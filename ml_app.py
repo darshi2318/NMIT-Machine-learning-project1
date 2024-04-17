@@ -17,14 +17,14 @@ model = joblib.load('finalized_model.joblib')
 
 def prediction(Buying,Maint,Doors,Persons,Lug_boots,Safety):
   if Safety == 'med':
-    safety = 1
+    Safety = 1
   elif Safety == 'high':
-    safety = 2
+    Safety = 2
   elif Safety == 'low':
-    safety = 3
-  df = pd.DataFrame([Buying,Maint,Doors,Persons,Lug_boots,safety],
-                    columns=['Buying','Maint','Doors','Persons','Lug_boots','safety'])
-  result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,safety]])
+    Safety = 3
+  df = pd.DataFrame([Buying,Maint,Doors,Persons,Lug_boots,Safety],
+                    columns=['Buying','Maint','Doors','Persons','Lug_boots','Safety'])
+  result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,Safety]])
   return result
 
 st.title('car evaluation Classification')
