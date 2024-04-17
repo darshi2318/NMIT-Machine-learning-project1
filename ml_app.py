@@ -6,8 +6,7 @@ import joblib
 from sklearn.tree import DecisionTreeClassifier
 
 #loding up the classification model we created
-model = DecisionTreeClassifier(criterion='entropy', max_depth=10, min_samples_leaf=2,
-                       random_state=0)
+model = DecisionTreeClassifier(max_depth=20, min_samples_leaf=5, random_state=0)
 model = joblib.load('finalized_model.joblib')
 
 #caching the model for faster loading
@@ -17,14 +16,14 @@ model = joblib.load('finalized_model.joblib')
 
 def prediction(Buying,Maint,Doors,Persons,Lug_boots,Safety):
   if Safety == 'med':
-    Safety = 1
+    safety = 1
   elif Safety == 'high':
-    Safety = 2
+    safety = 2
   elif Safety == 'low':
-    Safety = 3
-  df = pd.DataFrame([Buying,Maint,Doors,Persons,Lug_boots,Safety],
-                    columns=['Buying','Maint','Doors','Persons','Lug_boots','Safety'])
-  result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,Safety]])
+    safety = 3
+  df = pd.DataFrame([[Buying,Maint,Doors,Persons,Lug_boots,safety]],
+                    columns=['Buying','Maint','Doors','Persons','Lug_boots','safety'])
+  result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,safety]])
   return result
 
 st.title('car evaluation Classification')
