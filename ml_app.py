@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 #loding up the classification model we created
 model = DecisionTreeClassifier(max_depth=20, min_samples_leaf=5, random_state=0)
-model = jolib.load('finalized_model.joblib')
+model = joblib.load('finalized_model.joblib')
 
 #caching the model for faster loading
 @st.cache
@@ -23,7 +23,7 @@ def prediction(Buying,Maint,Doors,Persons,Lug_boots,Safety):
     safety = 3
   df = pd.DataFrame([Buying,Maint,Doors,Persons,Lug_boots,safety],
                     columns=['Buying','Maint','Doors','Persons','Lug_boots','safety'])
-  prediction=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,safety]])
+  result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,safety]])
   return prediction
 
 st.title('car evaluation Classification')
