@@ -24,7 +24,7 @@ def prediction(Buying,Maint,Doors,Persons,Lug_boots,Safety):
   df = pd.DataFrame([Buying,Maint,Doors,Persons,Lug_boots,safety],
                     columns=['Buying','Maint','Doors','Persons','Lug_boots','safety'])
   result=model.predict([[Buying,Maint,Doors,Persons,Lug_boots,safety]])
-  return prediction
+  return result
 
 st.title('car evaluation Classification')
 st.image("""https://www.hindustantimes.com/ht-img/img/2024/04/17/550x309/CRICKET-IND-AFG-T20-62_1709207374217_1713331028912.jpg""")
@@ -42,5 +42,5 @@ Lug_boot= st.number_input('lug_boot:',min_value = 1,max_value = 4,value=1)
 Safety = st.radio('safety:',('med','high','low'))
 
 if st.button('Submit_Cars_Infos'):
-  cal_eval = predict(Buying,Maint,Doors,Persons,Lug_boot,Safety)
+  cal_eval = prediction(Buying,Maint,Doors,Persons,Lug_boot,Safety)
   st.success(f'The Evaluation of Car : {cal_eval[0]}')
